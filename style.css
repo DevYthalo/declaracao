@@ -586,9 +586,9 @@ body::after {
   }
 
   .letter {
-    height: 380px;
+    height: 370px;
 
-    padding: 24px 20px;
+    padding: 10px 8px;
   }
 
   .letter h1 {
