@@ -1,0 +1,605 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      #ffb6c9 0%,
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      #d98cff 0%,
+      transparent 25%
+    ),
+    linear-gradient(
+      135deg,
+      #16051c,
+      #350d35,
+      #17051e
+    );
+
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+
+
+/* =========================
+   BRILHOS DO FUNDO
+========================= */
+
+body::before,
+body::after {
+  content: "";
+
+  position: fixed;
+
+  width: 300px;
+  height: 300px;
+
+  border-radius: 50%;
+
+  filter: blur(100px);
+
+  opacity: 0.25;
+
+  z-index: -1;
+}
+
+body::before {
+  background: #ff3f81;
+  top: -100px;
+  left: -100px;
+}
+
+body::after {
+  background: #a84dff;
+  bottom: -100px;
+  right: -100px;
+}
+
+
+/* =========================
+   CORAÇÕES
+========================= */
+
+.hearts span {
+  position: fixed;
+
+  bottom: -50px;
+
+  color: #ff6f9f;
+
+  font-size: 20px;
+
+  animation: subir linear infinite;
+
+  opacity: 0.7;
+
+  filter: drop-shadow(0 0 8px #ff4f91);
+}
+
+.hearts span:nth-child(1) {
+  left: 8%;
+  animation-duration: 9s;
+}
+
+.hearts span:nth-child(2) {
+  left: 18%;
+  animation-duration: 12s;
+  animation-delay: 2s;
+}
+
+.hearts span:nth-child(3) {
+  left: 32%;
+  animation-duration: 8s;
+  animation-delay: 4s;
+}
+
+.hearts span:nth-child(4) {
+  left: 48%;
+  animation-duration: 11s;
+  animation-delay: 1s;
+}
+
+.hearts span:nth-child(5) {
+  left: 62%;
+  animation-duration: 9s;
+  animation-delay: 3s;
+}
+
+.hearts span:nth-child(6) {
+  left: 76%;
+  animation-duration: 13s;
+  animation-delay: 2s;
+}
+
+.hearts span:nth-child(7) {
+  left: 90%;
+  animation-duration: 10s;
+  animation-delay: 5s;
+}
+
+@keyframes subir {
+  0% {
+    transform:
+      translateY(0)
+      scale(0.5)
+      rotate(0deg);
+
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform:
+      translateY(-115vh)
+      scale(1.3)
+      rotate(30deg);
+
+    opacity: 0;
+  }
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+  width: min(90%, 520px);
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 13px;
+
+  letter-spacing: 4px;
+
+  text-transform: uppercase;
+
+  color: #ffb7cd;
+
+  margin-bottom: 25px;
+
+  animation: aparecer 1.5s ease;
+}
+
+
+/* =========================
+   ENVELOPE
+========================= */
+
+.envelope {
+  position: relative;
+
+  width: 100%;
+  height: 310px;
+
+  cursor: pointer;
+
+  perspective: 1000px;
+
+  animation: flutuar 4s ease-in-out infinite;
+}
+
+
+/* =========================
+   CORPO DO ENVELOPE
+========================= */
+
+.envelope-body {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ff6f9d,
+      #d93672
+    );
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.45),
+    0 0 35px rgba(255, 74, 137, 0.25);
+
+  overflow: hidden;
+}
+
+
+/* Detalhes do envelope */
+
+.envelope-body::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      35deg,
+      transparent 49%,
+      rgba(255, 255, 255, 0.12) 50%,
+      transparent 51%
+    ),
+    linear-gradient(
+      -35deg,
+      transparent 49%,
+      rgba(255, 255, 255, 0.08) 50%,
+      transparent 51%
+    );
+
+  z-index: 1;
+}
+
+
+/* Frente do envelope */
+
+.envelope-body::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 72%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f05a8b,
+      #d93672
+    );
+
+  clip-path: polygon(
+    0 0,
+    50% 48%,
+    100% 0,
+    100% 100%,
+    0 100%
+  );
+
+  z-index: 4;
+}
+
+
+/* =========================
+   CARTA
+========================= */
+
+.letter {
+  position: absolute;
+
+  left: 7%;
+  bottom: 0;
+
+  width: 86%;
+  height: 370px;
+
+  padding: 28px 25px;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      rgba(255, 255, 255, 0.96),
+      rgba(255, 245, 249, 0.98)
+    );
+
+  color: #4b2032;
+
+  /*
+    IMPORTANTE:
+    começa escondida dentro do envelope.
+  */
+
+  transform: translateY(100%);
+
+  /*
+    Impede que ela apareça
+    embaixo do envelope.
+  */
+
+  visibility: hidden;
+  opacity: 0;
+
+  z-index: 3;
+
+  transition:
+    transform 1s cubic-bezier(.22, 1, .36, 1),
+    opacity 0.4s ease;
+
+  box-shadow:
+    0 5px 25px rgba(0, 0, 0, 0.18);
+
+  overflow: hidden;
+}
+
+
+/* Título */
+
+.letter h1 {
+  font-family: "Caveat", cursive;
+
+  font-size: 38px;
+
+  color: #d72f68;
+
+  margin-bottom: 8px;
+}
+
+
+/* Texto */
+
+.letter p {
+  font-family: "Caveat", cursive;
+
+  font-size: 21px;
+
+  line-height: 1.25;
+}
+
+
+/* Assinatura */
+
+.signature {
+  margin-top: 12px;
+
+  font-family: "Caveat", cursive;
+
+  font-size: 25px;
+
+  color: #d72f68;
+}
+
+
+/* =========================
+   ABA
+========================= */
+
+.flap {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 150px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff91b3,
+      #e84b82
+    );
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    50% 100%
+  );
+
+  transform-origin: top;
+
+  transition:
+    transform 1s
+    cubic-bezier(.68, -.2, .27, 1.2);
+
+  z-index: 6;
+
+  filter:
+    drop-shadow(
+      0 4px 4px rgba(0, 0, 0, 0.15)
+    );
+}
+
+
+/* =========================
+   SELO
+========================= */
+
+.seal {
+  position: absolute;
+
+  z-index: 10;
+
+  left: 50%;
+  top: 52%;
+
+  transform:
+    translate(-50%, -50%);
+
+  width: 65px;
+  height: 65px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #b91f54;
+
+  border: 4px solid #ff9bb9;
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.3),
+    0 0 15px rgba(255, 100, 150, 0.5);
+
+  font-size: 25px;
+
+  transition:
+    opacity 0.5s,
+    transform 0.5s;
+}
+
+
+/* =========================
+   ABRINDO
+========================= */
+
+/* Aba abre */
+
+.envelope.open .flap {
+  transform: rotateX(180deg);
+
+  z-index: 2;
+}
+
+
+/* Carta sai do envelope */
+
+.envelope.open .letter {
+  transform: translateY(-35px);
+
+  visibility: visible;
+  opacity: 1;
+
+  z-index: 7;
+}
+
+
+/* Selo desaparece */
+
+.envelope.open .seal {
+  opacity: 0;
+
+  transform:
+    translate(-50%, -50%)
+    scale(0.3);
+}
+
+
+/* =========================
+   TEXTO INFERIOR
+========================= */
+
+.hint {
+  margin-top: 28px;
+
+  font-size: 13px;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  animation: pulsar 2s infinite;
+}
+
+
+/* =========================
+   CORAÇÃO
+========================= */
+
+.final-heart {
+  margin-top: 18px;
+
+  font-size: 28px;
+
+  animation: bater 1.2s infinite;
+}
+
+
+/* =========================
+   ANIMAÇÕES
+========================= */
+
+@keyframes flutuar {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulsar {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+@keyframes bater {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  15% {
+    transform: scale(1.25);
+  }
+
+  30% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(1.18);
+  }
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 500px) {
+
+  .envelope {
+    height: 280px;
+  }
+
+  .letter {
+    height: 225px;
+
+    padding: 24px 20px;
+  }
+
+  .letter h1 {
+    font-size: 32px;
+  }
+
+  .letter p {
+    font-size: 19px;
+  }
+
+  .signature {
+    font-size: 22px;
+  }
+}
